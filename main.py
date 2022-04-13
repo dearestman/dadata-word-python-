@@ -21,15 +21,34 @@ def find_INN(resource, query):
     res = requests.post(url, data=json.dumps(data), headers=headers)
     return res.json()
 
-def testWord():
-    doc = DocxTemplate("Шаблон.doc")
-    context = {'name': 'ООО Ромашка', 'director': 'г. Москва, ул. Долгоруковская, д. 0'}
+def testWord(executor, client):
+    doc = DocxTemplate("Шаблон.docx")
+    context = {
+        'executorName': executor['suggestions'][0]['value'],
+        'executorDirector': executor['suggestions'][0]['data']['management']['post'] +
+                            ": " + executor['suggestions'][0]['data']['management']['name'],
+        'executorINN': executor['suggestions'][0]['data']['inn'],
+        'executorKPP': executor['suggestions'][0]['data']['kpp'],
+        'executorOGRN': executor['suggestions'][0]['data']['ogrn'],
+        'executorAddress': executor['suggestions'][0]['data']['address']['value'],
+
+        'clientName': client['suggestions'][0]['value'],
+        'clientDirector': client['suggestions'][0]['data']['management']['post'] +
+                          ": " + client['suggestions'][0]['data']['management']['name'],
+        'clientINN': client['suggestions'][0]['data']['inn'],
+        'clientKPP': client['suggestions'][0]['data']['kpp'],
+        'clientOGRN': client['suggestions'][0]['data']['ogrn'],
+        'clientAddress': client['suggestions'][0]['data']['address']['value'],
+        }
     doc.render(context)
     doc.save("шаблон-final.docx")
 
 
 if __name__ == '__main__':
-    testWord()
+    executor = find_INN('party', '0278101668')
+    client = find_INN('party', '2901130440')
+    testWord(executor, client)
+
     data = find_INN('party', '0278101668')
     # название компании
     print('Название: ' + data['suggestions'][0]['value'])
