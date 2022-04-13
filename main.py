@@ -49,17 +49,17 @@ if __name__ == '__main__':
     client = find_INN('party', '2901130440')
     testWord(executor, client)
 
-    data = find_INN('party', '0278101668')
-    # название компании
-    print('Название: ' + data['suggestions'][0]['value'])
-    # Полное название
-    print('Полное название: ' + data['suggestions'][0]['data']['name']['full_with_opf'])
-    # КПП
-    print('КПП: ' + data['suggestions'][0]['data']['kpp'])
-    # ОГРН
-    print('ОГРН: ' + data['suggestions'][0]['data']['ogrn'])
-    # Должность + ФИО
-    print(data['suggestions'][0]['data']['management']['post'] + ": " + data['suggestions'][0]['data']['management'][
-        'name'])
-    # юр.адрес
-    print('Юр.адрес: ' + data['suggestions'][0]['data']['address']['value'])
+    # data = find_INN('party', '0278101668')
+    # # название компании
+    # print('Название: ' + data['suggestions'][0]['value'])
+    # # Полное название
+    # print('Полное название: ' + data['suggestions'][0]['data']['name']['full_with_opf'])
+    # # КПП
+    # print('КПП: ' + data['suggestions'][0]['data']['kpp'])
+    # # ОГРН
+    # print('ОГРН: ' + data['suggestions'][0]['data']['ogrn'])
+    # # Должность + ФИО
+    # print(data['suggestions'][0]['data']['management']['post'] + ": " + data['suggestions'][0]['data']['management'][
+    #     'name'])
+    # # юр.адрес
+    # print('Юр.адрес: ' + data['suggestions'][0]['data']['address']['value'])
