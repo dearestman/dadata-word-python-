@@ -45,12 +45,21 @@ def testWord(executor, client):
 
 
 if __name__ == '__main__':
+
     clientINN = str(input("Введите ИНН клиента: "))
     executorINN = str(input("Введите ИНН клиента: "))
     #executorINN - 7736227885
     #clientINN - 2901130440
     executor = find_INN('party', executorINN)
     client = find_INN('party', clientINN)
+
+    while len(executor['suggestions'])==0 | len(client['suggestions'])==0:
+        print("Данные отсутствуют в  Dadata. Пожалуйста введите корректные данные!")
+        clientINN = str(input("Введите ИНН клиента: "))
+        executorINN = str(input("Введите ИНН клиента: "))
+        executor = find_INN('party', executorINN)
+        client = find_INN('party', clientINN)
+
     testWord(executor, client)
 
 
